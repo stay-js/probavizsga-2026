@@ -14,4 +14,5 @@
 
 // import "@/assets/external/tailwind.css";
 
+import '@/assets/app.css';
 import '@/assets/style.css';

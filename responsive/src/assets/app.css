@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
+}
+
+body {
+  padding: 2.5rem;
+  background-color: #f3f3e0;
+}
+
+img {
+  width: 100%;
+}
+
+h1 {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #0284c7;
+  border-radius: 4px;
+  padding-block: 8px;
+  font-size: 1.15rem;
+}
+
+.card-content {
+  padding: 8px;
+}
+
+.badge {
+  color: white;
+  background-color: #791a0a;
+  border-radius: 8px;
+  padding: 2rem 12px 8px;
+}
+
+span {
+  padding: 7px;
+  border-radius: 4px;
+  color: #791a0a;
+  background-color: hsl(9, 35%, 75%);
+}
+
+.details {
+  padding-block: 1rem;
+}
+
+article {
+  border: 2px solid #5f0000;
+  background-color: #ffffff;
+}

@@ -1,15 +1,1232 @@
-openapi: 3.0.1
+openapi: '3.1.0'
 info:
-  title: HelloWorld API
+  title: Vizsgák API
   version: 1.0.0
+  description: |
+    A `SubjectController` kezeli a tantárgyak, míg az `ExamController` a vizsgák adatait. A controllert ezen API leírás alapján valósítsa meg!
+
+servers:
+  - url: http://backend.vm1.test
+    description: VM1 backend
+  - url: http://backend.vm2.test
+    description: VM2 backend
+  - url: http://backend.vm3.test
+    description: VM3 backend
+  - url: http://backend.vm4.test
+    description: VM4 backend
+  - url: http://backend.vm5.test
+    description: VM5 backend
+  - url: http://backend.vm6.test
+    description: VM6 backend
+
 paths:
-  /hello:
+  /api/subjects:
     get:
-      operationId: hello.world
-      summary: Returns a greeting
+      tags:
+        - Subject
+      summary: Tantárgyak listájának lekérése
+      description: Az `index` action jelenítse meg az összes tantárgyat!
+      operationId: subjects.index
       responses:
         '200':
-          description: A friendly greeting
+          description: Tantárgyak listája
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SubjectResource'
+              example:
+                {
+                  'data':
+                    [
+                      {
+                        'id': 1,
+                        'name': "Programoz\u00e1s alapjai",
+                        'credits': 6,
+                        'type': "el\u0151ad\u00e1s",
+                        'exams':
+                          [
+                            {
+                              'id': 1,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Alap szintaxis \u00e9s kifejez\u00e9sek",
+                              'score': 67.2,
+                            },
+                            {
+                              'id': 2,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Ciklusok \u00e9s el\u00e1gaz\u00e1sok",
+                              'score': 74.5,
+                            },
+                            {
+                              'id': 3,
+                              'type': "sz\u00f3beli",
+                              'name': "Algoritmikus gondolkod\u00e1s",
+                              'score': 81.1,
+                            },
+                            {
+                              'id': 4,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "T\u00f6mbkezel\u00e9s",
+                              'score': 59.8,
+                            },
+                            {
+                              'id': 5,
+                              'type': "sz\u00f3beli",
+                              'name': "F\u00fcggv\u00e9nyh\u00edv\u00e1sok",
+                              'score': 76.3,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 2,
+                        'name': "Programoz\u00e1s alapjai",
+                        'credits': 0,
+                        'type': 'labor',
+                        'exams':
+                          [
+                            {
+                              'id': 6,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Egyszer\u0171 programok \u00edr\u00e1sa",
+                              'score': 72.4,
+                            },
+                            {
+                              'id': 7,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Input-output kezel\u00e9s",
+                              'score': 68.9,
+                            },
+                            {
+                              'id': 8,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Hibakeres\u00e9s",
+                              'score': 61.5,
+                            },
+                            {
+                              'id': 9,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Ciklusok gyakorl\u00e1sa",
+                              'score': 77.7,
+                            },
+                            {
+                              'id': 10,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Alap algoritmusok implement\u00e1l\u00e1sa",
+                              'score': 83.2,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 3,
+                        'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                        'credits': 5,
+                        'type': "el\u0151ad\u00e1s",
+                        'exams':
+                          [
+                            {
+                              'id': 11,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Oszt\u00e1lydiagramok",
+                              'score': 64.1,
+                            },
+                            {
+                              'id': 12,
+                              'type': "sz\u00f3beli",
+                              'name': "\u00d6r\u00f6kl\u0151d\u00e9s \u00e9s kiterjeszt\u00e9s",
+                              'score': 79.6,
+                            },
+                            {
+                              'id': 13,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Konstruktorok \u00e9s destruktorok",
+                              'score': 58.4,
+                            },
+                            {
+                              'id': 14,
+                              'type': "sz\u00f3beli",
+                              'name': "Polimorfizmus alkalmaz\u00e1sa",
+                              'score': 82.9,
+                            },
+                            {
+                              'id': 15,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': 'Encapsulation elvei',
+                              'score': 71.3,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 4,
+                        'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                        'credits': 0,
+                        'type': 'labor',
+                        'exams':
+                          [
+                            {
+                              'id': 16,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Oszt\u00e1lyok implement\u00e1l\u00e1sa",
+                              'score': 75,
+                            },
+                            {
+                              'id': 17,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "\u00d6r\u00f6kl\u0151d\u00e9s gyakorl\u00e1sa",
+                              'score': 69.2,
+                            },
+                            {
+                              'id': 18,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Interf\u00e9szek haszn\u00e1lata",
+                              'score': 62.8,
+                            },
+                            {
+                              'id': 19,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Kiv\u00e9telkezel\u00e9s k\u00f3dban",
+                              'score': 78.5,
+                            },
+                            {
+                              'id': 20,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Egys\u00e9gtesztel\u00e9s alapjai",
+                              'score': 84.7,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 5,
+                        'name': "Adatszerkezetek \u00e9s algoritmusok",
+                        'credits': 6,
+                        'type': "el\u0151ad\u00e1s",
+                        'exams':
+                          [
+                            {
+                              'id': 21,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Lista \u00e9s verem",
+                              'score': 66.6,
+                            },
+                            {
+                              'id': 22,
+                              'type': "sz\u00f3beli",
+                              'name': "Gr\u00e1f reprezent\u00e1ci\u00f3k",
+                              'score': 80.2,
+                            },
+                            {
+                              'id': 23,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Rendez\u00e9sek \u00f6sszehasonl\u00edt\u00e1sa",
+                              'score': 61.9,
+                            },
+                            {
+                              'id': 24,
+                              'type': "sz\u00f3beli",
+                              'name': "Rekurz\u00edv algoritmusok",
+                              'score': 77.5,
+                            },
+                            {
+                              'id': 25,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Hash technik\u00e1k",
+                              'score': 70.8,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 6,
+                        'name': "Adatb\u00e1zisrendszerek",
+                        'credits': 5,
+                        'type': "el\u0151ad\u00e1s",
+                        'exams':
+                          [
+                            {
+                              'id': 26,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': 'ER modell',
+                              'score': 73.4,
+                            },
+                            {
+                              'id': 27,
+                              'type': "sz\u00f3beli",
+                              'name': "Normaliz\u00e1l\u00e1si form\u00e1k",
+                              'score': 85.1,
+                            },
+                            {
+                              'id': 28,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "\u00d6sszetett lek\u00e9rdez\u00e9sek",
+                              'score': 67.3,
+                            },
+                            {
+                              'id': 29,
+                              'type': "sz\u00f3beli",
+                              'name': "Indexel\u00e9si strat\u00e9gi\u00e1k",
+                              'score': 79,
+                            },
+                            {
+                              'id': 30,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Tranzakci\u00f3k kezel\u00e9se",
+                              'score': 71.6,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 7,
+                        'name': "Adatb\u00e1zisrendszerek",
+                        'credits': 0,
+                        'type': 'labor',
+                        'exams':
+                          [
+                            {
+                              'id': 31,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "SELECT lek\u00e9rdez\u00e9sek",
+                              'score': 76.2,
+                            },
+                            {
+                              'id': 32,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "JOIN m\u0171veletek",
+                              'score': 69.9,
+                            },
+                            {
+                              'id': 33,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Adatm\u00f3dos\u00edt\u00e1s",
+                              'score': 64.4,
+                            },
+                            {
+                              'id': 34,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "T\u00e1bl\u00e1k l\u00e9trehoz\u00e1sa",
+                              'score': 81.3,
+                            },
+                            {
+                              'id': 35,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Indexek haszn\u00e1lata",
+                              'score': 74.8,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 8,
+                        'name': "Oper\u00e1ci\u00f3s rendszerek",
+                        'credits': 5,
+                        'type': "el\u0151ad\u00e1s",
+                        'exams':
+                          [
+                            {
+                              'id': 36,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Processzek \u00e1llapotai",
+                              'score': 62.7,
+                            },
+                            {
+                              'id': 37,
+                              'type': "sz\u00f3beli",
+                              'name': "Mem\u00f3riakezel\u00e9si modellek",
+                              'score': 78.9,
+                            },
+                            {
+                              'id': 38,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Lapoz\u00e1s \u00e9s szegment\u00e1l\u00e1s",
+                              'score': 69.5,
+                            },
+                            {
+                              'id': 39,
+                              'type': "sz\u00f3beli",
+                              'name': "Holtpont kezel\u00e9se",
+                              'score': 83.4,
+                            },
+                            {
+                              'id': 40,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "F\u00e1jlrendszer strukt\u00far\u00e1k",
+                              'score': 71.2,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 9,
+                        'name': "Sz\u00e1m\u00edt\u00f3g\u00e9p-h\u00e1l\u00f3zatok",
+                        'credits': 4,
+                        'type': "el\u0151ad\u00e1s",
+                        'exams':
+                          [
+                            {
+                              'id': 41,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "H\u00e1l\u00f3zati r\u00e9tegek",
+                              'score': 68.6,
+                            },
+                            {
+                              'id': 42,
+                              'type': "sz\u00f3beli",
+                              'name': "Csomagkapcsolt h\u00e1l\u00f3zatok",
+                              'score': 82.1,
+                            },
+                            {
+                              'id': 43,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "IP c\u00edmz\u00e9s",
+                              'score': 65.7,
+                            },
+                            {
+                              'id': 44,
+                              'type': "sz\u00f3beli",
+                              'name': "H\u00e1l\u00f3zati protokollok",
+                              'score': 79.8,
+                            },
+                            {
+                              'id': 45,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Hibajav\u00edt\u00f3 k\u00f3dok",
+                              'score': 73,
+                            },
+                          ],
+                      },
+                      {
+                        'id': 10,
+                        'name': "Szoftverfejleszt\u00e9si m\u00f3dszertanok",
+                        'credits': 3,
+                        'type': "szemin\u00e1rium",
+                        'exams':
+                          [
+                            {
+                              'id': 46,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Fejleszt\u00e9si \u00e9letciklus",
+                              'score': 70.4,
+                            },
+                            {
+                              'id': 47,
+                              'type': "sz\u00f3beli",
+                              'name': "Agilis m\u00f3dszertanok",
+                              'score': 88.2,
+                            },
+                            {
+                              'id': 48,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "K\u00f6vetelm\u00e9nyanal\u00edzis",
+                              'score': 66.9,
+                            },
+                            {
+                              'id': 49,
+                              'type': "sz\u00f3beli",
+                              'name': 'Projektmenedzsment',
+                              'score': 84.5,
+                            },
+                            {
+                              'id': 50,
+                              'type': "\u00edr\u00e1sbeli",
+                              'name': "Verzi\u00f3kezel\u00e9si strat\u00e9gi\u00e1k",
+                              'score': 72.1,
+                            },
+                          ],
+                      },
+                    ],
+                }
+
+  /api/subjects/{subject}:
+    get:
+      tags:
+        - Subject
+      summary: Egy adott tantárgy lekérése
+      description: A `show` action jelenítse meg a kiválasztott tantárgy adatait!
+      operationId: subjects.show
+      parameters:
+        - name: subject
+          in: path
+          required: true
+          schema:
+            type: integer
+          example: 1
+      responses:
+        '200':
+          description: Egy adott tantárgy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SubjectResource'
+              example:
+                {
+                  'data':
+                    {
+                      'id': 1,
+                      'name': "Programoz\u00e1s alapjai",
+                      'credits': 6,
+                      'type': "el\u0151ad\u00e1s",
+                      'exams':
+                        [
+                          {
+                            'id': 1,
+                            'type': "\u00edr\u00e1sbeli",
+                            'name': "Alap szintaxis \u00e9s kifejez\u00e9sek",
+                            'score': 67.2,
+                          },
+                          {
+                            'id': 2,
+                            'type': "\u00edr\u00e1sbeli",
+                            'name': "Ciklusok \u00e9s el\u00e1gaz\u00e1sok",
+                            'score': 74.5,
+                          },
+                          {
+                            'id': 3,
+                            'type': "sz\u00f3beli",
+                            'name': "Algoritmikus gondolkod\u00e1s",
+                            'score': 81.1,
+                          },
+                          {
+                            'id': 4,
+                            'type': "\u00edr\u00e1sbeli",
+                            'name': "T\u00f6mbkezel\u00e9s",
+                            'score': 59.8,
+                          },
+                          {
+                            'id': 5,
+                            'type': "sz\u00f3beli",
+                            'name': "F\u00fcggv\u00e9nyh\u00edv\u00e1sok",
+                            'score': 76.3,
+                          },
+                        ],
+                    },
+                }
+        '404':
+          description: Nem található
+
+  /api/exams:
+    get:
+      tags:
+        - Exam
+      summary: Vizsgák listájának lekérése
+      description: Az `index` action jelenítse meg az összes vizsgát!
+      operationId: exams.index
+      responses:
+        '200':
+          description: Vizsgák listája
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ExamResource'
+              example:
+                {
+                  'data':
+                    [
+                      {
+                        'id': 1,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Alap szintaxis \u00e9s kifejez\u00e9sek",
+                        'score': 67.2,
+                        'subject':
+                          {
+                            'id': 1,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 2,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Ciklusok \u00e9s el\u00e1gaz\u00e1sok",
+                        'score': 74.5,
+                        'subject':
+                          {
+                            'id': 1,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 3,
+                        'type': "sz\u00f3beli",
+                        'name': "Algoritmikus gondolkod\u00e1s",
+                        'score': 81.1,
+                        'subject':
+                          {
+                            'id': 1,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 4,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "T\u00f6mbkezel\u00e9s",
+                        'score': 59.8,
+                        'subject':
+                          {
+                            'id': 1,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 5,
+                        'type': "sz\u00f3beli",
+                        'name': "F\u00fcggv\u00e9nyh\u00edv\u00e1sok",
+                        'score': 76.3,
+                        'subject':
+                          {
+                            'id': 1,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 6,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Egyszer\u0171 programok \u00edr\u00e1sa",
+                        'score': 72.4,
+                        'subject':
+                          {
+                            'id': 2,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 7,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Input-output kezel\u00e9s",
+                        'score': 68.9,
+                        'subject':
+                          {
+                            'id': 2,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 8,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Hibakeres\u00e9s",
+                        'score': 61.5,
+                        'subject':
+                          {
+                            'id': 2,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 9,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Ciklusok gyakorl\u00e1sa",
+                        'score': 77.7,
+                        'subject':
+                          {
+                            'id': 2,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 10,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Alap algoritmusok implement\u00e1l\u00e1sa",
+                        'score': 83.2,
+                        'subject':
+                          {
+                            'id': 2,
+                            'name': "Programoz\u00e1s alapjai",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 11,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Oszt\u00e1lydiagramok",
+                        'score': 64.1,
+                        'subject':
+                          {
+                            'id': 3,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 12,
+                        'type': "sz\u00f3beli",
+                        'name': "\u00d6r\u00f6kl\u0151d\u00e9s \u00e9s kiterjeszt\u00e9s",
+                        'score': 79.6,
+                        'subject':
+                          {
+                            'id': 3,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 13,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Konstruktorok \u00e9s destruktorok",
+                        'score': 58.4,
+                        'subject':
+                          {
+                            'id': 3,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 14,
+                        'type': "sz\u00f3beli",
+                        'name': "Polimorfizmus alkalmaz\u00e1sa",
+                        'score': 82.9,
+                        'subject':
+                          {
+                            'id': 3,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 15,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': 'Encapsulation elvei',
+                        'score': 71.3,
+                        'subject':
+                          {
+                            'id': 3,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 16,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Oszt\u00e1lyok implement\u00e1l\u00e1sa",
+                        'score': 75,
+                        'subject':
+                          {
+                            'id': 4,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 17,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "\u00d6r\u00f6kl\u0151d\u00e9s gyakorl\u00e1sa",
+                        'score': 69.2,
+                        'subject':
+                          {
+                            'id': 4,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 18,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Interf\u00e9szek haszn\u00e1lata",
+                        'score': 62.8,
+                        'subject':
+                          {
+                            'id': 4,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 19,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Kiv\u00e9telkezel\u00e9s k\u00f3dban",
+                        'score': 78.5,
+                        'subject':
+                          {
+                            'id': 4,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 20,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Egys\u00e9gtesztel\u00e9s alapjai",
+                        'score': 84.7,
+                        'subject':
+                          {
+                            'id': 4,
+                            'name': "Objektumorient\u00e1lt programoz\u00e1s",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 21,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Lista \u00e9s verem",
+                        'score': 66.6,
+                        'subject':
+                          {
+                            'id': 5,
+                            'name': "Adatszerkezetek \u00e9s algoritmusok",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 22,
+                        'type': "sz\u00f3beli",
+                        'name': "Gr\u00e1f reprezent\u00e1ci\u00f3k",
+                        'score': 80.2,
+                        'subject':
+                          {
+                            'id': 5,
+                            'name': "Adatszerkezetek \u00e9s algoritmusok",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 23,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Rendez\u00e9sek \u00f6sszehasonl\u00edt\u00e1sa",
+                        'score': 61.9,
+                        'subject':
+                          {
+                            'id': 5,
+                            'name': "Adatszerkezetek \u00e9s algoritmusok",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 24,
+                        'type': "sz\u00f3beli",
+                        'name': "Rekurz\u00edv algoritmusok",
+                        'score': 77.5,
+                        'subject':
+                          {
+                            'id': 5,
+                            'name': "Adatszerkezetek \u00e9s algoritmusok",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 25,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Hash technik\u00e1k",
+                        'score': 70.8,
+                        'subject':
+                          {
+                            'id': 5,
+                            'name': "Adatszerkezetek \u00e9s algoritmusok",
+                            'credits': 6,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 26,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': 'ER modell',
+                        'score': 73.4,
+                        'subject':
+                          {
+                            'id': 6,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 27,
+                        'type': "sz\u00f3beli",
+                        'name': "Normaliz\u00e1l\u00e1si form\u00e1k",
+                        'score': 85.1,
+                        'subject':
+                          {
+                            'id': 6,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 28,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "\u00d6sszetett lek\u00e9rdez\u00e9sek",
+                        'score': 67.3,
+                        'subject':
+                          {
+                            'id': 6,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 29,
+                        'type': "sz\u00f3beli",
+                        'name': "Indexel\u00e9si strat\u00e9gi\u00e1k",
+                        'score': 79,
+                        'subject':
+                          {
+                            'id': 6,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 30,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Tranzakci\u00f3k kezel\u00e9se",
+                        'score': 71.6,
+                        'subject':
+                          {
+                            'id': 6,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 31,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "SELECT lek\u00e9rdez\u00e9sek",
+                        'score': 76.2,
+                        'subject':
+                          {
+                            'id': 7,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 32,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "JOIN m\u0171veletek",
+                        'score': 69.9,
+                        'subject':
+                          {
+                            'id': 7,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 33,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Adatm\u00f3dos\u00edt\u00e1s",
+                        'score': 64.4,
+                        'subject':
+                          {
+                            'id': 7,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 34,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "T\u00e1bl\u00e1k l\u00e9trehoz\u00e1sa",
+                        'score': 81.3,
+                        'subject':
+                          {
+                            'id': 7,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 35,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Indexek haszn\u00e1lata",
+                        'score': 74.8,
+                        'subject':
+                          {
+                            'id': 7,
+                            'name': "Adatb\u00e1zisrendszerek",
+                            'credits': 0,
+                            'type': 'labor',
+                          },
+                      },
+                      {
+                        'id': 36,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Processzek \u00e1llapotai",
+                        'score': 62.7,
+                        'subject':
+                          {
+                            'id': 8,
+                            'name': "Oper\u00e1ci\u00f3s rendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 37,
+                        'type': "sz\u00f3beli",
+                        'name': "Mem\u00f3riakezel\u00e9si modellek",
+                        'score': 78.9,
+                        'subject':
+                          {
+                            'id': 8,
+                            'name': "Oper\u00e1ci\u00f3s rendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 38,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Lapoz\u00e1s \u00e9s szegment\u00e1l\u00e1s",
+                        'score': 69.5,
+                        'subject':
+                          {
+                            'id': 8,
+                            'name': "Oper\u00e1ci\u00f3s rendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 39,
+                        'type': "sz\u00f3beli",
+                        'name': "Holtpont kezel\u00e9se",
+                        'score': 83.4,
+                        'subject':
+                          {
+                            'id': 8,
+                            'name': "Oper\u00e1ci\u00f3s rendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 40,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "F\u00e1jlrendszer strukt\u00far\u00e1k",
+                        'score': 71.2,
+                        'subject':
+                          {
+                            'id': 8,
+                            'name': "Oper\u00e1ci\u00f3s rendszerek",
+                            'credits': 5,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 41,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "H\u00e1l\u00f3zati r\u00e9tegek",
+                        'score': 68.6,
+                        'subject':
+                          {
+                            'id': 9,
+                            'name': "Sz\u00e1m\u00edt\u00f3g\u00e9p-h\u00e1l\u00f3zatok",
+                            'credits': 4,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 42,
+                        'type': "sz\u00f3beli",
+                        'name': "Csomagkapcsolt h\u00e1l\u00f3zatok",
+                        'score': 82.1,
+                        'subject':
+                          {
+                            'id': 9,
+                            'name': "Sz\u00e1m\u00edt\u00f3g\u00e9p-h\u00e1l\u00f3zatok",
+                            'credits': 4,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 43,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "IP c\u00edmz\u00e9s",
+                        'score': 65.7,
+                        'subject':
+                          {
+                            'id': 9,
+                            'name': "Sz\u00e1m\u00edt\u00f3g\u00e9p-h\u00e1l\u00f3zatok",
+                            'credits': 4,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 44,
+                        'type': "sz\u00f3beli",
+                        'name': "H\u00e1l\u00f3zati protokollok",
+                        'score': 79.8,
+                        'subject':
+                          {
+                            'id': 9,
+                            'name': "Sz\u00e1m\u00edt\u00f3g\u00e9p-h\u00e1l\u00f3zatok",
+                            'credits': 4,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 45,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Hibajav\u00edt\u00f3 k\u00f3dok",
+                        'score': 73,
+                        'subject':
+                          {
+                            'id': 9,
+                            'name': "Sz\u00e1m\u00edt\u00f3g\u00e9p-h\u00e1l\u00f3zatok",
+                            'credits': 4,
+                            'type': "el\u0151ad\u00e1s",
+                          },
+                      },
+                      {
+                        'id': 46,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Fejleszt\u00e9si \u00e9letciklus",
+                        'score': 70.4,
+                        'subject':
+                          {
+                            'id': 10,
+                            'name': "Szoftverfejleszt\u00e9si m\u00f3dszertanok",
+                            'credits': 3,
+                            'type': "szemin\u00e1rium",
+                          },
+                      },
+                      {
+                        'id': 47,
+                        'type': "sz\u00f3beli",
+                        'name': "Agilis m\u00f3dszertanok",
+                        'score': 88.2,
+                        'subject':
+                          {
+                            'id': 10,
+                            'name': "Szoftverfejleszt\u00e9si m\u00f3dszertanok",
+                            'credits': 3,
+                            'type': "szemin\u00e1rium",
+                          },
+                      },
+                      {
+                        'id': 48,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "K\u00f6vetelm\u00e9nyanal\u00edzis",
+                        'score': 66.9,
+                        'subject':
+                          {
+                            'id': 10,
+                            'name': "Szoftverfejleszt\u00e9si m\u00f3dszertanok",
+                            'credits': 3,
+                            'type': "szemin\u00e1rium",
+                          },
+                      },
+                      {
+                        'id': 49,
+                        'type': "sz\u00f3beli",
+                        'name': 'Projektmenedzsment',
+                        'score': 84.5,
+                        'subject':
+                          {
+                            'id': 10,
+                            'name': "Szoftverfejleszt\u00e9si m\u00f3dszertanok",
+                            'credits': 3,
+                            'type': "szemin\u00e1rium",
+                          },
+                      },
+                      {
+                        'id': 50,
+                        'type': "\u00edr\u00e1sbeli",
+                        'name': "Verzi\u00f3kezel\u00e9si strat\u00e9gi\u00e1k",
+                        'score': 72.1,
+                        'subject':
+                          {
+                            'id': 10,
+                            'name': "Szoftverfejleszt\u00e9si m\u00f3dszertanok",
+                            'credits': 3,
+                            'type': "szemin\u00e1rium",
+                          },
+                      },
+                    ],
+                }
+
+    post:
+      tags:
+        - Exam
+      summary: Új vizsga létrehozása
+      description: |
+        A `store` action végezzen validálást, majd hozza létre az új vizsgát az adatbázisban, végül adja vissza!
+
+        - Amennyiben a validálás nem sikerül, úgy a hibáról/hibákról tájékoztassa a felhasználót!
+
+        - Amennyiben szükséges bővítse ki a modellt a feladat elvégzéséhez!
+      operationId: exams.store
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExamRequest'
+            example: { 'type': 'írásbeli', 'name': 'Próbavizsga', 'score': 67.9, 'subject_id': 1 }
+      responses:
+        '201':
+          description: Vizsga létrehozva
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ExamResource'
+              example:
+                {
+                  'data':
+                    {
+                      'id': 999,
+                      'type': "\u00edr\u00e1sbeli",
+                      'name': "Pr\u00f3bavizsga",
+                      'score': 67.9,
+                      'subject':
+                        {
+                          'id': 1,
+                          'name': "Programoz\u00e1s alapjai",
+                          'credits': 6,
+                          'type': "el\u0151ad\u00e1s",
+                        },
+                    },
+                }
+        '422':
+          description: Érvénytelen adatok
           content:
             application/json:
               schema:
@@ -17,4 +1234,57 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Hello, world!
+                  errors:
+                    type: object
+components:
+  schemas:
+    SubjectResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 100
+        credits:
+          type: integer
+          min: 0
+        type:
+          type: string
+          maxLength: 50
+        exams:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExamResource'
+    ExamResource:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+          maxLength: 50
+        name:
+          type: string
+          maxLength: 150
+        score:
+          type: number
+          minimum: 0
+          maximum: 100
+        subject:
+          $ref: '#/components/schemas/SubjectResource'
+    ExamRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          maxLength: 50
+        name:
+          type: string
+          maxLength: 150
+        score:
+          type: number
+          minimum: 0
+          maximum: 100
+        subject_id:
+          type: integer
