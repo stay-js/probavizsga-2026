@@ -15,11 +15,11 @@ class ExamResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-          'id' => $this->id,
-          'type' => $this->type,
-          'name' => $this->name,
-          'score' => $this->score,
-          'subject' => new SubjectResource($this->whenLoaded('subject')),
+            'id' => $this->id,
+            'type' => $this->type,
+            'name' => $this->name,
+            'score' => $this->score,
+            'subject' => new SubjectResource($this->whenLoaded('subject')),
         ];
     }
 }

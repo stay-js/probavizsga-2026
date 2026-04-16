@@ -10,13 +10,13 @@ class Subject extends Model
     public $timestamps = true;
 
     protected $fillable = [
-      'name',
-      'credits',
-      'type',
+        'name',
+        'credits',
+        'type',
     ];
 
     public function exams(): HasMany
     {
-        return $this->hasMany(Subject::class);
+        return $this->hasMany(Exam::class);
     }
 }

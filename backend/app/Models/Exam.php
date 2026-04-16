@@ -10,10 +10,10 @@ class Exam extends Model
     public $timestamps = true;
 
     protected $fillable = [
-      'type',
-      'name',
-      'score',
-      'subject_id',
+        'type',
+        'name',
+        'score',
+        'subject_id',
     ];
 
     public function subject(): BelongsTo
