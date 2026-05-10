@@ -7,7 +7,7 @@ import { subjectWithExamsSchema } from '@/lib/zod-schemas';
 const subjectResponse = createApiResponseSchema(subjectWithExamsSchema);
 const subjectsResponse = createApiResponseSchema(z.array(subjectWithExamsSchema));
 
-export function getSubject(id: number) {
+export function getSubject(id: string) {
   return queryOptions({
     queryFn: () => GET(`/api/subjects/${id}`, subjectResponse),
     queryKey: ['subjects', 'show', { id }],
