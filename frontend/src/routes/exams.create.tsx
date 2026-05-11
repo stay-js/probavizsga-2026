@@ -17,8 +17,7 @@ function RouteComponent() {
 
   const { mutate } = useMutation({
     ...createExam(),
-    onError: () =>
-      toast.error('V+áratlan hiba történt a vizsga létrehozása közben! Próbálja újra!'),
+    onError: () => toast.error('Váratlan hiba történt a vizsga létrehozása közben! Próbálja újra!'),
     onSuccess: (_, input) => {
       router.navigate({
         params: {

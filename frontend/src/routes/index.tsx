@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { SubjectCard } from '@/components/card';
+import { SubjectCard } from '@/components/subject-card';
 import { getSubjects } from '@/lib/subjects';
 
 export const Route = createFileRoute('/')({

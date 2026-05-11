@@ -5,9 +5,8 @@ import { z } from 'zod';
 import { FormInput, FormSelect } from '@/components/form';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { SelectGroup, SelectItem, SelectLabel } from '@/components/ui/select';
 import { type CreateExamData, type SubjectWithExams } from '@/lib/zod-schemas';
-
-import { SelectGroup, SelectItem, SelectLabel } from './ui/select';
 
 type ExamFormProps = {
   createExam: (data: CreateExamData) => void;
