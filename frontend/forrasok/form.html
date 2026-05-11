@@ -1,0 +1,67 @@
+<div class="mx-auto my-10 max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+  <h2 class="mb-6 text-center text-2xl font-bold text-slate-800">Vizsgaadatok rögzítése</h2>
+
+  <form class="space-y-5">
+    <div>
+      <label for="subject" class="mb-1 block text-sm font-semibold text-slate-700"
+        >Tárgy választása</label
+      >
+      <select
+        id="subject"
+        name="subject"
+        class="block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:ring-indigo-500"
+      >
+        <option value="">Válasszon egy tárgyat...</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="name" class="mb-1 block text-sm font-semibold text-slate-700">Vizsga neve</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Pl.: Zárthelyi dolgozat"
+        class="block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 focus:ring-indigo-500"
+      />
+    </div>
+
+    <div>
+      <label for="type" class="mb-1 block text-sm font-semibold text-slate-700"
+        >Vizsga típusa</label
+      >
+      <select
+        name="type"
+        id="type"
+        class="block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:ring-indigo-500"
+      >
+        <option value="">Válasszon egy típust...</option>
+        <option value="írásbeli">Írásbeli</option>
+        <option value="szóbeli">Szóbeli</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="score" class="mb-1 block text-sm font-semibold text-slate-700"
+        >Elért pontszám</label
+      >
+      <input
+        type="number"
+        id="score"
+        name="score"
+        step="0.1"
+        placeholder="0.0"
+        class="block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 focus:ring-indigo-500"
+      />
+    </div>
+
+    <div class="pt-2">
+      <button
+        type="submit"
+        class="w-full rounded-xl bg-red-800 px-4 py-3 font-bold text-white shadow-md transition-colors duration-200 hover:bg-red-900"
+      >
+        Adatok mentése
+      </button>
+    </div>
+  </form>
+</div>
