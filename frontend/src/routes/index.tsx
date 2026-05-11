@@ -12,8 +12,8 @@ function RouteComponent() {
   const { data: subjects } = useSuspenseQuery(getSubjects());
 
   return (
-    <main className="flex flex-col gap-4 py-12">
-      <h1 className="text-center text-3xl font-bold">Tárgyak</h1>
+    <main className="py-8">
+      <h1 className="mb-4 text-center text-2xl font-bold text-slate-800">Tárgyak</h1>
 
       <div className="grid grid-cols-1 gap-5 p-8 md:grid-cols-2 lg:grid-cols-4">
         {subjects?.data.map((subject) => (
