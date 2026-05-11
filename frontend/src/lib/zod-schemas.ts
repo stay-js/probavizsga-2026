@@ -29,7 +29,7 @@ export const subjectWithExamsSchema = subjectSchema.extend({
 export type SubjectWithExams = z.infer<typeof subjectWithExamsSchema>;
 
 export const createExamSchema = z.object({
-  name: z.string().min(1).max(150),
+  name: z.string().min(1).max(100),
   score: z.number().min(0).max(100),
   type: z.string().min(1).max(50),
 
